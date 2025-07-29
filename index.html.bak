@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="zh-CN" class="light sidebar-visible" dir="ltr">
     <head>
+__PWA_INSERT__
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>关于本书 - Rust语言圣经(Rust Course)</title>
