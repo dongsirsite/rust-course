@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cp ./assets/CNAME ./book/
-cp ./assets/*.html ./book/ || true
+cp ./assets/*.html ./book/
 cp ./assets/sitemap.xml ./book/
 
 cp ./icons/* ./book/
@@ -9,8 +9,9 @@ cp service-worker.js ./book/
 cp manifest.json ./book/
 
 
-# 插入 PWA HTML 片段
-injection=$(cat <<'EOF'
+
+# 注入 PWA 内容
+cat > ./book/pwa-snippet.html <<'EOF'
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#3e4eb8">
   <link rel="icon" href="icon-192.png">
@@ -25,14 +26,13 @@ injection=$(cat <<'EOF'
     }
   </script>
 EOF
-)
 
-# 用 awk 注入 PWA 内容到 <head> 后面
-awk -v block="$injection" '
-/<head>/ {
-  print;
-  print block;
-  next
-}
-{ print }
-' ./book/index.html
+# 插入 HTML 片段到 <head> 后
+sed -i.bak '/<head>/a__PWA_INSERT__' ./book/index.html
+sed -i.bak '/__PWA_INSERT__/ {
+  r ./book/pwa-snippet.html
+  d
+}' ./book/index.html
+
+# 清理
+rm ./book/pwa-snippet.html
