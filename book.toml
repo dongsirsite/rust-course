@@ -12,6 +12,8 @@ additional-css = ["theme/style.css"]
 additional-js = ["assets/custom.js", "assets/bigPicture.js"]
 git-repository-url = "https://github.com/sunface/rust-course"
 edit-url-template = "https://github.com/sunface/rust-course/edit/main/{path}"
+theme = ["theme"]  # 👈 加这一行，启用自定义 HTML 模板
+
 
 [output.html.playground]
 editable = true
