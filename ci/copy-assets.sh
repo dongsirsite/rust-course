@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cp ./assets/CNAME ./book/
-cp ./assets/*.html ./book/
+cp ./assets/*.html ./book/ || true
 cp ./assets/sitemap.xml ./book/
 
 cp ./icons/* ./book/
